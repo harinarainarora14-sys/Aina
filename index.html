@@ -81,7 +81,7 @@
     async function analyze() {
       await startCamera();
       resultEl.textContent = "Analyzing for 4 seconds…";
-      startBtn.disabled = true;
+      startBtn.style.display = "none"; // 🔥 Hide the button while analyzing
 
       let collected = [];
       const startTime = Date.now();
@@ -96,7 +96,7 @@
         } else {
           if (collected.length === 0) {
             resultEl.textContent = "No face detected.";
-            startBtn.disabled = false;
+            startBtn.style.display = "inline-block"; // 🔥 Show button again
             return;
           }
 
@@ -112,7 +112,7 @@
           const msg = getMessage(key);
 
           resultEl.innerHTML = `<strong>Mood:</strong> ${key} (${(val*100).toFixed(1)}%)<br><span class="glow-text">${msg.quote}</span><br><div class="exercise">${msg.exercise}</div>`;
-          startBtn.disabled = false;
+          startBtn.style.display = "inline-block"; // 🔥 Show button again
         }
       }
 
